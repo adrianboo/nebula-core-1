@@ -1,4 +1,159 @@
-/* ... (estilos existentes de :root, *, html, body, .container, .lang-switcher, header, .glitch, nav) ... */
+:root {
+    --primary-bg: #030303; /* Um preto bem profundo, quase absoluto */
+    --secondary-bg: #0d0d0d; /* Cinza muito escuro para elementos de container */
+    --text-color: #a0a0a0; /* Cinza mais suave para texto principal */
+    --text-brighter: #d0d0d0; /* Para texto que precisa de um pouco mais de destaque */
+    --accent-color: #00ff7f; /* Verde neon principal */
+    --accent-darker: #00994c; /* Verde neon mais escuro para sombras ou variações */
+    --border-color: #1a1a1a; /* Borda muito sutil, quase invisível */
+    --glitch-shadow1: #33cc33; /* Sombra 1 para o glitch, tom de verde */
+    --glitch-shadow2: #006622; /* Sombra 2 para o glitch, tom de verde escuro */
+    --font-family: 'Source Code Pro', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    font-family: var(--font-family);
+    line-height: 1.7;
+    font-size: 16px;
+    overflow-x: hidden;
+    /* Efeito de scanlines mais sutil e integrado ao fundo escuro */
+    background-image: linear-gradient(rgba(var(--accent-color-rgb, 0, 255, 127), 0.03) 1px, transparent 1px);
+    background-size: 1px 3px; /* Linhas um pouco mais espaçadas */
+}
+
+/* Helper para converter var(--accent-color) para RGB para o background-image */
+body::before {
+    content: "";
+    display: none;
+    /* Esta regra é apenas para que a variável abaixo funcione no contexto do body */
+    /* A cor exata não importa aqui, é só para definir a variável CSS que usa RGB */
+    --accent-color-rgb: 0, 255, 127; /* Corresponde ao #00ff7f */
+}
+
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* Language Switcher */
+.lang-switcher {
+    text-align: right;
+    margin-bottom: 15px;
+    padding-right: 10px;
+}
+
+.lang-switcher button {
+    background-color: transparent; /* Fundo transparente para botões */
+    color: var(--text-color);
+    border: 1px solid var(--border-color); /* Borda bem sutil */
+    padding: 5px 10px;
+    margin-left: 5px;
+    cursor: pointer;
+    font-family: var(--font-family);
+    transition: color 0.3s ease, border-color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.lang-switcher button:hover, .lang-switcher button.active {
+    color: var(--accent-color);
+    border-color: var(--accent-darker);
+    text-shadow: 0 0 5px var(--accent-color);
+}
+
+
+header {
+    padding: 10px 0 20px 0;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.header-top {
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2.5em;
+    color: var(--accent-color);
+    font-weight: 600;
+    margin-bottom: 5px;
+    text-shadow: 0 0 8px var(--accent-color), 0 0 15px var(--accent-darker);
+}
+
+/* Efeito Glitch para o título - cores alinhadas com o tema */
+.glitch {
+    position: relative;
+    display: inline-block;
+    color: var(--accent-color); /* Cor base do texto */
+}
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-bg); /* Para cobrir o texto original durante o glitch */
+    overflow: hidden;
+    color: var(--accent-color); /* Cor do texto nos pseudo-elementos */
+}
+.glitch::before {
+    left: 2px;
+    text-shadow: -1.5px 0 var(--glitch-shadow1);
+    animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
+}
+.glitch::after {
+    left: -2px;
+    text-shadow: 1.5px 0 var(--glitch-shadow2);
+    animation: glitch-anim-2 2.5s infinite linear alternate-reverse;
+}
+
+/* Animações Glitch (mantidas, mas com cores das sombras via CSS vars) */
+@keyframes glitch-anim-1 { 0% { clip-path: inset(10% 0 80% 0); } 2.5% { clip-path: inset(50% 0 30% 0); } 5% { clip-path: inset(90% 0 5% 0); } 7.5% { clip-path: inset(40% 0 45% 0); } 10% { clip-path: inset(10% 0 85% 0); } 12.5% { clip-path: inset(70% 0 10% 0); } 15% { clip-path: inset(30% 0 60% 0); } 17.5% { clip-path: inset(60% 0 20% 0); } 20% { clip-path: inset(5% 0 90% 0); } 22.5% { clip-path: inset(80% 0 5% 0); } 25% { clip-path: inset(25% 0 50% 0); } 27.5% { clip-path: inset(65% 0 30% 0); } 30% { clip-path: inset(15% 0 70% 0); } 32.5% { clip-path: inset(45% 0 40% 0); } 35% { clip-path: inset(75% 0 15% 0); } 37.5% { clip-path: inset(20% 0 75% 0); } 40% { clip-path: inset(55% 0 25% 0); } 42.5% { clip-path: inset(5% 0 80% 0); } 45% { clip-path: inset(85% 0 10% 0); } 47.5% { clip-path: inset(35% 0 55% 0); } 50% { clip-path: inset(60% 0 35% 0); } 52.5% { clip-path: inset(10% 0 80% 0); } 55% { clip-path: inset(70% 0 20% 0); } 57.5% { clip-path: inset(20% 0 60% 0); } 60% { clip-path: inset(90% 0 5% 0); } 62.5% { clip-path: inset(40% 0 40% 0); } 65% { clip-path: inset(5% 0 90% 0); } 67.5% { clip-path: inset(80% 0 10% 0); } 70% { clip-path: inset(30% 0 50% 0); } 72.5% { clip-path: inset(70% 0 10% 0); } 75% { clip-path: inset(10% 0 85% 0); } 77.5% { clip-path: inset(50% 0 30% 0); } 80% { clip-path: inset(25% 0 70% 0); } 82.5% { clip-path: inset(60% 0 20% 0); } 85% { clip-path: inset(15% 0 80% 0); } 87.5% { clip-path: inset(75% 0 5% 0); } 90% { clip-path: inset(35% 0 60% 0); } 92.5% { clip-path: inset(90% 0 1% 0); } 95% { clip-path: inset(45% 0 45% 0); } 97.5% { clip-path: inset(5% 0 70% 0); } 100% { clip-path: inset(80% 0 15% 0); } }
+@keyframes glitch-anim-2 { 0% { clip-path: inset(80% 0 5% 0); } 2.5% { clip-path: inset(30% 0 50% 0); } 5% { clip-path: inset(5% 0 90% 0); } 7.5% { clip-path: inset(45% 0 40% 0); } 10% { clip-path: inset(85% 0 10% 0); } 12.5% { clip-path: inset(10% 0 70% 0); } 15% { clip-path: inset(60% 0 30% 0); } 17.5% { clip-path: inset(20% 0 60% 0); } 20% { clip-path: inset(90% 0 5% 0); } 22.5% { clip-path: inset(5% 0 80% 0); } 25% { clip-path: inset(50% 0 25% 0); } 27.5% { clip-path: inset(30% 0 65% 0); } 30% { clip-path: inset(70% 0 15% 0); } 32.5% { clip-path: inset(40% 0 45% 0); } 35% { clip-path: inset(15% 0 75% 0); } 37.5% { clip-path: inset(75% 0 20% 0); } 40% { clip-path: inset(25% 0 55% 0); } 42.5% { clip-path: inset(80% 0 5% 0); } 45% { clip-path: inset(10% 0 85% 0); } 47.5% { clip-path: inset(55% 0 35% 0); } 50% { clip-path: inset(35% 0 60% 0); } 52.5% { clip-path: inset(80% 0 10% 0); } 55% { clip-path: inset(20% 0 70% 0); } 57.5% { clip-path: inset(60% 0 20% 0); } 60% { clip-path: inset(5% 0 90% 0); } 62.5% { clip-path: inset(40% 0 40% 0); } 65% { clip-path: inset(90% 0 5% 0); } 67.5% { clip-path: inset(10% 0 80% 0); } 70% { clip-path: inset(50% 0 30% 0); } 72.5% { clip-path: inset(10% 0 70% 0); } 75% { clip-path: inset(85% 0 10% 0); } 77.5% { clip-path: inset(30% 0 50% 0); } 80% { clip-path: inset(70% 0 25% 0); } 82.5% { clip-path: inset(20% 0 60% 0); } 85% { clip-path: inset(80% 0 15% 0); } 87.5% { clip-path: inset(5% 0 75% 0); } 90% { clip-path: inset(60% 0 35% 0); } 92.5% { clip-path: inset(1% 0 90% 0); } 95% { clip-path: inset(45% 0 45% 0); } 97.5% { clip-path: inset(70% 0 5% 0); } 100% { clip-path: inset(15% 0 80% 0); } }
+
+.operator-id {
+    font-size: 1em;
+    color: var(--text-brighter); /* Um pouco mais de destaque para o ID */
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.1em;
+    padding: 5px 10px;
+    border: 1px solid transparent; /* Borda para alinhamento, invisível inicialmente */
+    transition: color 0.3s ease, text-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+nav a:hover, nav a:focus {
+    color: var(--accent-color);
+    text-shadow: 0 0 5px var(--accent-color);
+    border-bottom-color: var(--accent-darker); /* Apenas borda inferior no hover */
+}
 
 section {
     padding: 50px 10px;
@@ -9,114 +164,15 @@ section:last-of-type {
     border-bottom: none;
 }
 
-section h2 { /* Título principal da seção, e.g., "// Catálogo Detalhado de Serviços" */
+section h2 { /* Título principal da seção */
     font-size: 1.8em;
     color: var(--accent-color);
-    margin-bottom: 30px;
+    margin-bottom: 35px; /* Mais espaço */
     font-weight: 400;
     text-align: center;
+    letter-spacing: 1px;
 }
 
-/* Estilos para a nova estrutura de serviços detalhados */
-.service-category {
-    margin-bottom: 40px;
-    padding: 20px;
-    background-color: rgba(var(--secondary-bg), 0.3); /* Um fundo levemente diferente para a categoria */
-    border: 1px solid var(--border-color);
-    border-left: 3px solid var(--accent-color);
-}
-
-.service-category h3 { /* Título da categoria, e.g., "I. Bypass de Sistemas Anti-Cheat" */
-    font-size: 1.5em;
-    color: var(--accent-color);
-    margin-bottom: 25px;
-    font-weight: 600;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 10px;
-}
-
-.service-item-detailed {
-    background-color: var(--secondary-bg);
-    padding: 20px;
-    border: 1px solid var(--border-color);
-    margin-bottom: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.service-item-detailed:hover {
-    transform: translateY(-3px) translateX(3px);
-    box-shadow: -3px 3px 15px rgba(0, 255, 127, 0.2);
-    border-color: var(--accent-darker);
-}
-
-.service-item-detailed h4 { /* Nome do serviço específico */
-    color: var(--text-color); /* Um pouco menos destaque que o título da categoria */
-    font-size: 1.2em;
-    font-weight: 600;
-    margin-bottom: 8px;
-}
-.service-item-detailed h4:hover {
-    color: var(--accent-color);
-}
-
-
-.service-desc { /* Descrição do serviço específico */
-    font-size: 0.95em;
-    margin-bottom: 12px;
-    color: #b0b0b0; /* Cinza um pouco mais claro para descrição */
-}
-
-.price {
-    font-size: 1em;
-    font-weight: 600;
-    color: var(--accent-color);
-    margin-top: 10px;
-    text-align: right;
-}
-.price span { /* Para "A partir de", "/hora", etc. */
-    font-weight: 400;
-    color: var(--text-color); 
-    font-size: 0.9em;
-}
-
-
-.service-note { /* Nota no final da seção de serviços */
-    text-align: center;
-    margin-top: 30px;
-    font-style: italic;
-    font-size: 0.9em;
-}
-
-/* ... (Resto dos estilos para #intro, .typed-text, contact, terms, footer, e media queries) ... */
-/* Assegure que os estilos existentes para #intro, .typed-text, etc., não conflitem ou sejam ajustados conforme necessário. */
-
-/* Ajustes de responsividade para a nova lista de serviços */
-@media (max-width: 768px) {
-    .service-category h3 {
-        font-size: 1.3em;
-    }
-    .service-item-detailed h4 {
-        font-size: 1.1em;
-    }
-    .price {
-        text-align: left; /* Melhor para mobile */
-        font-size: 0.95em;
-    }
-    /* ... (outros ajustes responsivos existentes) ... */
-}
-
-@media (max-width: 480px) {
-    .service-category {
-        padding: 15px;
-        border-left-width: 2px;
-    }
-    .service-item-detailed {
-        padding: 15px;
-    }
-    /* ... (outros ajustes responsivos existentes) ... */
-}
-
-/* Manter estilos anteriores para .typed-text, glitch, etc. */
 #intro .typed-text {
     font-size: 1.1em;
     text-align: center;
@@ -127,6 +183,7 @@ section h2 { /* Título principal da seção, e.g., "// Catálogo Detalhado de S
     opacity: 0; 
     width: 0; 
     border-right: .10em solid var(--accent-color);
+    color: var(--text-brighter);
 }
 
 @keyframes typing {
@@ -139,35 +196,141 @@ section h2 { /* Título principal da seção, e.g., "// Catálogo Detalhado de S
   50% { border-color: var(--accent-color); }
 }
 
-/* ... (copie aqui o restante dos estilos de .operator-id, nav, contact-methods, terms-content, footer, e as media queries completas do CSS anterior se não foram sobrescritas acima) ... */
+.service-category {
+    margin-bottom: 45px;
+    padding: 25px;
+    background-color: var(--secondary-bg);
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--accent-darker); /* Destaque mais forte */
+}
 
-.operator-id { font-size: 1em; color: var(--text-color); font-weight: 300; }
-nav { display: flex; justify-content: center; gap: 20px; }
-nav a { color: var(--text-color); text-decoration: none; font-size: 1.1em; padding: 5px 10px; transition: color 0.3s ease, text-shadow 0.3s ease; }
-nav a:hover, nav a:focus { color: var(--accent-color); text-shadow: 0 0 3px var(--accent-color); }
+.service-category h3 { /* Título da categoria */
+    font-size: 1.5em;
+    color: var(--accent-color);
+    margin-bottom: 30px;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 15px;
+    letter-spacing: 0.5px;
+}
 
-.contact-methods { display: flex; flex-direction: column; gap: 20px; align-items: center; }
-.contact-item { background-color: var(--secondary-bg); padding: 20px; border: 1px solid var(--border-color); width: 100%; max-width: 500px; text-align: center; }
-.contact-item p { margin-bottom: 5px; }
-.contact-item strong { color: var(--accent-color); }
-.contact-item small { font-size: 0.85em; color: #888; }
-.onion-address { color: var(--text-color); word-break: break-all; }
+.service-item-detailed {
+    background-color: transparent; /* Remove fundo duplicado, categoria já tem */
+    padding: 15px 0; /* Ajuste de padding */
+    border: none; /* Remove borda duplicada */
+    border-bottom: 1px dashed var(--border-color); /* Divisor sutil entre itens */
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+.service-item-detailed:last-child {
+    border-bottom: none; /* Remove borda do último item */
+    margin-bottom: 0;
+}
 
-.terms-content p { margin-bottom: 15px; font-size: 0.95em; }
-.terms-content strong { color: var(--accent-color); }
+.service-item-detailed:hover {
+    background-color: rgba(var(--accent-color-rgb, 0, 255, 127), 0.02); /* Leve brilho no hover */
+    transform: none; /* Remove transform para um feel mais "flat" */
+    box-shadow: none;
+}
 
-footer { text-align: center; padding: 30px 0; font-size: 0.9em; color: #777; border-top: 1px solid var(--border-color); margin-top: 40px; }
+.service-item-detailed h4 { /* Nome do serviço */
+    color: var(--text-brighter);
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+.service-item-detailed h4:hover {
+    color: var(--accent-color);
+}
 
-/* Full Media Queries from previous combined version */
+.service-desc {
+    font-size: 0.95em;
+    margin-bottom: 12px;
+    color: var(--text-color); 
+}
+
+.price {
+    font-size: 1em;
+    font-weight: 600;
+    color: var(--accent-color);
+    margin-top: 10px;
+    text-align: right;
+}
+.price span {
+    font-weight: 400;
+    color: var(--text-color); 
+    font-size: 0.9em;
+}
+
+.service-note {
+    text-align: center;
+    margin-top: 30px;
+    font-style: italic;
+    font-size: 0.9em;
+    color: var(--text-color);
+}
+
+.contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+.contact-item {
+    background-color: var(--secondary-bg);
+    padding: 25px; /* Mais padding */
+    border: 1px solid var(--border-color);
+    width: 100%;
+    max-width: 550px; /* Um pouco maior */
+    text-align: center;
+}
+.contact-item p {
+    margin-bottom: 8px;
+}
+.contact-item strong {
+    color: var(--accent-color);
+    font-weight: 600; /* Mais forte */
+}
+.contact-item small {
+    font-size: 0.85em;
+    color: #888; /* Mantido */
+}
+.onion-address {
+    color: var(--text-brighter);
+    word-break: break-all;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.terms-content p {
+    margin-bottom: 15px;
+    font-size: 0.95em;
+    line-height: 1.8; /* Melhorar espaçamento */
+}
+.terms-content strong {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+footer {
+    text-align: center;
+    padding: 40px 0; /* Mais padding */
+    font-size: 0.9em;
+    color: #666; /* Um pouco mais escuro para menos proeminência */
+    border-top: 1px solid var(--border-color);
+    margin-top: 40px;
+    letter-spacing: 0.5px;
+}
+
+/* Responsividade */
 @media (max-width: 768px) {
     header h1 { font-size: 2em; }
     .lang-switcher { padding-right: 0; text-align: center; margin-bottom: 20px; }
     nav { flex-direction: column; gap: 10px; }
     nav a { font-size: 1em; }
-    section h2 { font-size: 1.5em; }
-    /* .service-grid { grid-template-columns: 1fr; } - Removido pois mudamos a estrutura */
-    .service-category h3 { font-size: 1.3em; }
-    .service-item-detailed h4 { font-size: 1.1em; }
+    section h2 { font-size: 1.6em; } /* Ajustado */
+    .service-category h3 { font-size: 1.4em; } /* Ajustado */
+    .service-item-detailed h4 { font-size: 1.15em; } /* Ajustado */
     .price { text-align: left; font-size: 0.95em; }
 }
 
@@ -178,6 +341,9 @@ footer { text-align: center; padding: 30px 0; font-size: 0.9em; color: #777; bor
     #intro .typed-text { font-size: 1em; }
     .container { width: 95%; }
     .lang-switcher button { padding: 4px 8px; font-size: 0.9em; }
-    .service-category { padding: 15px; border-left-width: 2px; }
-    .service-item-detailed { padding: 15px; }
+    .service-category { padding: 20px 15px; border-left-width: 3px; } /* Ajustado */
+    .service-item-detailed { padding: 10px 0; } /* Ajustado */
+    section h2 { font-size: 1.5em; }
+    .service-category h3 { font-size: 1.3em; }
 }
+
