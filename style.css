@@ -1,0 +1,183 @@
+/* ... (estilos existentes de :root, *, html, body, .container, .lang-switcher, header, .glitch, nav) ... */
+
+section {
+    padding: 50px 10px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border-color);
+}
+section:last-of-type {
+    border-bottom: none;
+}
+
+section h2 { /* Título principal da seção, e.g., "// Catálogo Detalhado de Serviços" */
+    font-size: 1.8em;
+    color: var(--accent-color);
+    margin-bottom: 30px;
+    font-weight: 400;
+    text-align: center;
+}
+
+/* Estilos para a nova estrutura de serviços detalhados */
+.service-category {
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: rgba(var(--secondary-bg), 0.3); /* Um fundo levemente diferente para a categoria */
+    border: 1px solid var(--border-color);
+    border-left: 3px solid var(--accent-color);
+}
+
+.service-category h3 { /* Título da categoria, e.g., "I. Bypass de Sistemas Anti-Cheat" */
+    font-size: 1.5em;
+    color: var(--accent-color);
+    margin-bottom: 25px;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.service-item-detailed {
+    background-color: var(--secondary-bg);
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-item-detailed:hover {
+    transform: translateY(-3px) translateX(3px);
+    box-shadow: -3px 3px 15px rgba(0, 255, 127, 0.2);
+    border-color: var(--accent-darker);
+}
+
+.service-item-detailed h4 { /* Nome do serviço específico */
+    color: var(--text-color); /* Um pouco menos destaque que o título da categoria */
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+.service-item-detailed h4:hover {
+    color: var(--accent-color);
+}
+
+
+.service-desc { /* Descrição do serviço específico */
+    font-size: 0.95em;
+    margin-bottom: 12px;
+    color: #b0b0b0; /* Cinza um pouco mais claro para descrição */
+}
+
+.price {
+    font-size: 1em;
+    font-weight: 600;
+    color: var(--accent-color);
+    margin-top: 10px;
+    text-align: right;
+}
+.price span { /* Para "A partir de", "/hora", etc. */
+    font-weight: 400;
+    color: var(--text-color); 
+    font-size: 0.9em;
+}
+
+
+.service-note { /* Nota no final da seção de serviços */
+    text-align: center;
+    margin-top: 30px;
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+/* ... (Resto dos estilos para #intro, .typed-text, contact, terms, footer, e media queries) ... */
+/* Assegure que os estilos existentes para #intro, .typed-text, etc., não conflitem ou sejam ajustados conforme necessário. */
+
+/* Ajustes de responsividade para a nova lista de serviços */
+@media (max-width: 768px) {
+    .service-category h3 {
+        font-size: 1.3em;
+    }
+    .service-item-detailed h4 {
+        font-size: 1.1em;
+    }
+    .price {
+        text-align: left; /* Melhor para mobile */
+        font-size: 0.95em;
+    }
+    /* ... (outros ajustes responsivos existentes) ... */
+}
+
+@media (max-width: 480px) {
+    .service-category {
+        padding: 15px;
+        border-left-width: 2px;
+    }
+    .service-item-detailed {
+        padding: 15px;
+    }
+    /* ... (outros ajustes responsivos existentes) ... */
+}
+
+/* Manter estilos anteriores para .typed-text, glitch, etc. */
+#intro .typed-text {
+    font-size: 1.1em;
+    text-align: center;
+    margin: 20px auto;
+    max-width: 700px;
+    white-space: pre-wrap; 
+    overflow: hidden;
+    opacity: 0; 
+    width: 0; 
+    border-right: .10em solid var(--accent-color);
+}
+
+@keyframes typing {
+  from { width: 0; opacity: 1; }
+  to { width: 100%; opacity: 1; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: var(--accent-color); }
+}
+
+/* ... (copie aqui o restante dos estilos de .operator-id, nav, contact-methods, terms-content, footer, e as media queries completas do CSS anterior se não foram sobrescritas acima) ... */
+
+.operator-id { font-size: 1em; color: var(--text-color); font-weight: 300; }
+nav { display: flex; justify-content: center; gap: 20px; }
+nav a { color: var(--text-color); text-decoration: none; font-size: 1.1em; padding: 5px 10px; transition: color 0.3s ease, text-shadow 0.3s ease; }
+nav a:hover, nav a:focus { color: var(--accent-color); text-shadow: 0 0 3px var(--accent-color); }
+
+.contact-methods { display: flex; flex-direction: column; gap: 20px; align-items: center; }
+.contact-item { background-color: var(--secondary-bg); padding: 20px; border: 1px solid var(--border-color); width: 100%; max-width: 500px; text-align: center; }
+.contact-item p { margin-bottom: 5px; }
+.contact-item strong { color: var(--accent-color); }
+.contact-item small { font-size: 0.85em; color: #888; }
+.onion-address { color: var(--text-color); word-break: break-all; }
+
+.terms-content p { margin-bottom: 15px; font-size: 0.95em; }
+.terms-content strong { color: var(--accent-color); }
+
+footer { text-align: center; padding: 30px 0; font-size: 0.9em; color: #777; border-top: 1px solid var(--border-color); margin-top: 40px; }
+
+/* Full Media Queries from previous combined version */
+@media (max-width: 768px) {
+    header h1 { font-size: 2em; }
+    .lang-switcher { padding-right: 0; text-align: center; margin-bottom: 20px; }
+    nav { flex-direction: column; gap: 10px; }
+    nav a { font-size: 1em; }
+    section h2 { font-size: 1.5em; }
+    /* .service-grid { grid-template-columns: 1fr; } - Removido pois mudamos a estrutura */
+    .service-category h3 { font-size: 1.3em; }
+    .service-item-detailed h4 { font-size: 1.1em; }
+    .price { text-align: left; font-size: 0.95em; }
+}
+
+@media (max-width: 480px) {
+    body { font-size: 14px; }
+    header h1 { font-size: 1.8em; }
+    .operator-id { font-size: 0.9em; }
+    #intro .typed-text { font-size: 1em; }
+    .container { width: 95%; }
+    .lang-switcher button { padding: 4px 8px; font-size: 0.9em; }
+    .service-category { padding: 15px; border-left-width: 2px; }
+    .service-item-detailed { padding: 15px; }
+}
